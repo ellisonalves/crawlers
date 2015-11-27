@@ -1,0 +1,6 @@
+target/
+data/
+logs/
+db/
+nbactions.xml
+nb-configuration.xml
