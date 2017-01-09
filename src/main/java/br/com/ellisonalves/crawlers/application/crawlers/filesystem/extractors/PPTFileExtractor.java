@@ -1,12 +1,13 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
+import org.apache.poi.hslf.extractor.PowerPointExtractor;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.poi.hslf.extractor.PowerPointExtractor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 public class PPTFileExtractor implements Extractor {
 

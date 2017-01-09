@@ -2,6 +2,7 @@ package br.com.ellisonalves.crawlers;
 
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
 import br.com.ellisonalves.crawlers.application.crawlers.CrawlableFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,11 +42,11 @@ public class Main {
                 map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 1);
                 break;
             case "fs":
-                map.put(Crawlable.PATH_INICIAL_PARAM, "C:\\Users\\y6do\\Desktop");
+                map.put(Crawlable.PATH_INICIAL_PARAM, "C:\\Users\\ellison\\Desktop");
                 map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 2);
                 break;
             case "twt":
-                map.put(Crawlable.TEXTO_BUSCA_PARAM, "dragon age");
+                map.put(Crawlable.TEXTO_BUSCA_PARAM, "#PokemonGO");
                 break;
         }
 

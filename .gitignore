@@ -4,3 +4,10 @@ logs/
 db/
 nbactions.xml
 nb-configuration.xml
+
+*gradle/
+.idea/
+*.iml
+build/
+gradlew*
+

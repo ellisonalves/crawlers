@@ -1,8 +1,9 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem;
 
-import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractorFactory;
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
 import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.Extractor;
+import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractorFactory;
+
 import java.io.File;
 import java.util.Map;
 import java.util.logging.Level;
