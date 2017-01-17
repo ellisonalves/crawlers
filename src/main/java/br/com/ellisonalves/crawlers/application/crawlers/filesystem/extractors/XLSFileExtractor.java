@@ -1,5 +1,6 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
+import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
 import org.apache.poi.hssf.extractor.ExcelExtractor;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
@@ -9,11 +10,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class XLSFileExtractor implements Extractor {
+public class XLSFileExtractor implements FileExtractor {
 
-    private static XLSFileExtractor INSTANCE = new XLSFileExtractor();
-    
-    public static XLSFileExtractor getInstance() {
+    private static final XLSFileExtractor INSTANCE = new XLSFileExtractor();
+
+    public static final XLSFileExtractor getInstance() {
         return INSTANCE;
     }
 
@@ -21,11 +22,11 @@ public class XLSFileExtractor implements Extractor {
     }
 
     @Override
-    public String extract(File file) {
+    public ExtractedData extract(File file) {
         try (FileInputStream fis = new FileInputStream(file)) {
             POIFSFileSystem fs = new POIFSFileSystem(fis);
             ExcelExtractor excelExtractor = new ExcelExtractor(fs);
-            return excelExtractor.getText();
+            return FileData.create(excelExtractor.getText());
         } catch (IOException ex) {
             Logger.getLogger(XLSFileExtractor.class
                     .getName()).log(Level.SEVERE, null, ex);

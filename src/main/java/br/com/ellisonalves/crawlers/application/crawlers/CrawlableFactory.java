@@ -27,12 +27,11 @@ public enum CrawlableFactory {
         this.crawlable = crawlable;
     }
 
-    public static Crawlable getCrawlableInstanceFor(String abreviacao) {
+    public static Crawlable createCrawlableFrom(String abreviacao) {
         return from(abreviacao).crawlable;
     }
 
     private static CrawlableFactory from(String abreviacao) {
-
         for (CrawlableFactory dce : CrawlableFactory.values()) {
             if (dce.abreviacao.equals(abreviacao)) {
                 return dce;

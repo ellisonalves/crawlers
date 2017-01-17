@@ -1,5 +1,6 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
+import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
@@ -8,11 +9,13 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PDFFileExtractor implements Extractor {
+public class PDFFileExtractor implements FileExtractor {
+
+    private static final Logger LOGGER = Logger.getLogger(PDFFileExtractor.class.getName());
 
     private static final PDFFileExtractor INSTANCE = new PDFFileExtractor();
-    
-    public static PDFFileExtractor getInstance() {
+
+    public static final PDFFileExtractor getInstance() {
         return INSTANCE;
     }
 
@@ -21,16 +24,21 @@ public class PDFFileExtractor implements Extractor {
     }
 
     @Override
-    public String extract(File file) {
+    public ExtractedData extract(File file) {
         try {
             PDDocument document = PDDocument.load(file);
             PDFTextStripper stripper = new PDFTextStripper();
-            return stripper.getText(document);
+            return FileData.create(stripper.getText(document));
         } catch (IOException ex) {
-            Logger.getLogger(PDFFileExtractor.class.getName())
-                    .log(Level.SEVERE, null, ex);
-            throw new RuntimeException("File: " + file.getAbsolutePath(), ex);
+            LOGGER.log(Level.SEVERE, 
+                    "I couldn''t read the file {0} because: {1}", 
+                    new Object[] {
+                        file.getName(), 
+                        ex.getCause().getMessage()
+                    }
+            );
         }
+        return FileData.create("");
     }
 
 }

@@ -4,25 +4,31 @@ package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
  *
  * @author ellison
  */
-public class FileExtractorFactory {
+public enum FileExtractorFactory {
 
-    public static Extractor getFileExtractor(final String fileExtension) {
+    TXT(".txt", TxtExtractor.getInstance()),
+    PDF(".pdf", PDFFileExtractor.getInstance()),
+    DOC(".doc", DocFileExtractor.getInstance()),
+    PPT(".ppt", PPTFileExtractor.getInstance()),
+    XLS(".xls", XLSFileExtractor.getInstance());
+
+    private final String fileExtension;
+    private final FileExtractor instance;
+
+    FileExtractorFactory(String fileExtension, FileExtractor instance) {
+        this.fileExtension = fileExtension;
+        this.instance = instance;
+    }
+
+    public static FileExtractor extractorOf(final String fileExtension) {
         if (null != fileExtension) {
-            switch (fileExtension) {
-                case ".txt":
-                    return TxtExtractor.getInstance();
-                case ".pdf":
-                    return PDFFileExtractor.getInstance();
-                case ".doc":
-                    return DocFileExtractor.getInstance();
-                case ".ppt":
-                    return PPTFileExtractor.getInstance();
-                case ".xls":
-                    return XLSFileExtractor.getInstance();
-                default:
-                    throw new RuntimeException("A instância " + fileExtension + " ainda não foi implementada");
+            for (FileExtractorFactory extractor : FileExtractorFactory.values()) {
+                if (fileExtension.equals(extractor.fileExtension)) {
+                    return extractor.instance;
+                }
             }
         }
-        throw new RuntimeException("Nenhuma instância válida pode ser criada.");
+        throw new RuntimeException("Nenhuma instância para " + fileExtension + " não pode ser criada.");
     }
+
 }

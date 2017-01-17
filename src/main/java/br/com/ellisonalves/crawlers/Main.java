@@ -16,7 +16,6 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
         System.out.println("Este programa vai fazer um crawler a partir de uma fonte de dados que for especificada");
         System.out.println("Escolha uma das opçoes abaixo para fazer o crawler");
         System.out.println("wp - WebPages");
@@ -28,11 +27,11 @@ public class Main {
         System.out.print("Escolha sua opção:");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String opcaoSelecionada = br.readLine();
+        String option = br.readLine();
 
         Map<String, Object> map = new HashMap<>();
 
-        switch (opcaoSelecionada) {
+        switch (option) {
             case "rss":
                 // Feed de exemplo pra não ter q digitar toda hora.
                 map.put(Crawlable.URL_PARAM, "http://jovemnerd.com.br/categoria/nerdcast/feed/");
@@ -42,7 +41,7 @@ public class Main {
                 map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 1);
                 break;
             case "fs":
-                map.put(Crawlable.PATH_INICIAL_PARAM, "C:\\Users\\ellison\\Desktop");
+                map.put(Crawlable.PATH_INICIAL_PARAM, "/home/ellison/Documentos");
                 map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 2);
                 break;
             case "twt":
@@ -50,10 +49,8 @@ public class Main {
                 break;
         }
 
-        CrawlableFactory
-                .getCrawlableInstanceFor(opcaoSelecionada)
-                .crawl(map);
-
+        Crawlable crawlable = CrawlableFactory.createCrawlableFrom(option);
+        crawlable.crawl(map);
     }
 
 }

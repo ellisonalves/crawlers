@@ -1,14 +1,15 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
+import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TxtExtractor implements Extractor {
+public class TxtExtractor implements FileExtractor {
 
     private static final TxtExtractor INSTANCE = new TxtExtractor();
-    
-    public static TxtExtractor getInstance() {
+
+    public static final TxtExtractor getInstance() {
         return INSTANCE;
     }
 
@@ -17,7 +18,7 @@ public class TxtExtractor implements Extractor {
     }
 
     @Override
-    public String extract(File file) {
+    public ExtractedData extract(File file) {
         try (FileInputStream fis = new FileInputStream(file);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis))) {
 
@@ -28,7 +29,7 @@ public class TxtExtractor implements Extractor {
                 sb.append(linha);
             }
 
-            return sb.toString();
+            return FileData.create(sb.toString());
         } catch (IOException ex) {
             Logger.getLogger(TxtExtractor.class
                     .getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,6 @@
 package br.com.ellisonalves.crawlers.domain.model.documento;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author ellison
  */
-public class Documento {
+public class Documento implements Serializable {
 
     private String id;
     private Date data;

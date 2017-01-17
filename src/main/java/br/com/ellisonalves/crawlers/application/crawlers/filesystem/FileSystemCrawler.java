@@ -1,7 +1,6 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem;
 
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
-import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.Extractor;
 import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractorFactory;
 
 import java.io.File;
@@ -9,8 +8,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractor;
 
 /**
+ * Crawler that explores files for a specified path in the file system.
  *
  * @author ellison
  */
@@ -33,17 +34,18 @@ public class FileSystemCrawler implements Crawlable {
                     explore(subFile, depth - 1);
                 }
             }
-            crawlerFor(file);
+            extract(file);
         }
     }
 
-    private void crawlerFor(File file) {
+    private void extract(File file) {
         if (!file.isDirectory() && FILTERS.matcher(file.getName()).matches()) {
             final String name = file.getName();
             final String fileExtension = name.substring(name.lastIndexOf("."), name.length());
 
-            Extractor extractor = FileExtractorFactory.getFileExtractor(fileExtension);
-            LOGGER.log(Level.INFO, extractor.extract(file));
+            FileExtractor extractor = FileExtractorFactory.extractorOf(fileExtension);
+            LOGGER.log(Level.INFO, extractor.extract(file).asString());
         }
     }
+
 }
