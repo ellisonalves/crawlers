@@ -13,9 +13,9 @@ public interface Crawlable {
 
     final static String REGEX_LINKS_VALIDOS_PARAM = "regexLinksValidosParam";
 
-    final static String PROFUNDIDADE_EXPLORACAO_PARAM = "profundidadeParam";
+    final static String SEARCH_DEPTH_PARAM = "profundidadeParam";
 
-    final static String PATH_INICIAL_PARAM = "pathInicialParam";
+    final static String INITIAL_PATH_PARAM = "pathInicialParam";
 
     static String TEXTO_BUSCA_PARAM = "textoBuscaParam";
 

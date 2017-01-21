@@ -38,11 +38,11 @@ public class Main {
                 break;
             case "wp":
                 map.put(Crawlable.URL_PARAM, "http://www.globo.com");
-                map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 1);
+                map.put(Crawlable.SEARCH_DEPTH_PARAM, 1);
                 break;
             case "fs":
-                map.put(Crawlable.PATH_INICIAL_PARAM, "/home/ellison/Documentos");
-                map.put(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM, 2);
+                map.put(Crawlable.INITIAL_PATH_PARAM, "/home/ellison/Documentos");
+                map.put(Crawlable.SEARCH_DEPTH_PARAM, 2);
                 break;
             case "twt":
                 map.put(Crawlable.TEXTO_BUSCA_PARAM, "#PokemonGO");

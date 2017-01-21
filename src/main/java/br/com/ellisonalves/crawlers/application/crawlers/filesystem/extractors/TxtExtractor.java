@@ -5,18 +5,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TxtExtractor implements FileExtractor {
-
-    private static final TxtExtractor INSTANCE = new TxtExtractor();
-
-    public static final TxtExtractor getInstance() {
-        return INSTANCE;
-    }
-
-    private TxtExtractor() {
-
-    }
-
+class TxtExtractor implements FileExtractor {
     @Override
     public ExtractedData extract(File file) {
         try (FileInputStream fis = new FileInputStream(file);
@@ -29,7 +18,7 @@ public class TxtExtractor implements FileExtractor {
                 sb.append(linha);
             }
 
-            return FileData.create(sb.toString());
+            return FileData.create(sb.toString(), null, null, null);
         } catch (IOException ex) {
             Logger.getLogger(TxtExtractor.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -37,5 +26,4 @@ public class TxtExtractor implements FileExtractor {
             throw new RuntimeException(ex);
         }
     }
-
 }

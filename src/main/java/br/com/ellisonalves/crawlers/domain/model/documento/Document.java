@@ -1,19 +1,21 @@
 package br.com.ellisonalves.crawlers.domain.model.documento;
 
+import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * Entidade que armazena as informações de páginas.
- *
+ * <p>
  * create table if not exists document ( id_document varchar(32) not null, title
  * varchar(800), content longvarchar, author varchar(400), date timestamp, link
  * varchar(800), source varchar(400), PRIMARY KEY (id_document) );
  *
  * @author ellison
  */
-public class Documento implements Serializable {
+public class Document implements Serializable {
 
     private String id;
     private Date data;
@@ -23,8 +25,8 @@ public class Documento implements Serializable {
     private String titulo;
     private String texto;
 
-    public Documento() {
-        this.id = "";
+    public Document(ExtractedData extractedData) {
+//        this.id = "";
         this.data = new Date();
         this.link = "";
         this.fonte = "";
@@ -110,7 +112,7 @@ public class Documento implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Documento other = (Documento) obj;
+        final Document other = (Document) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -134,4 +136,5 @@ public class Documento implements Serializable {
         }
         return true;
     }
+
 }

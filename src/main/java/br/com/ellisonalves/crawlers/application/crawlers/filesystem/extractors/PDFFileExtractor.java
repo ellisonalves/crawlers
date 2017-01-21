@@ -9,36 +9,25 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PDFFileExtractor implements FileExtractor {
+class PDFFileExtractor implements FileExtractor {
 
     private static final Logger LOGGER = Logger.getLogger(PDFFileExtractor.class.getName());
-
-    private static final PDFFileExtractor INSTANCE = new PDFFileExtractor();
-
-    public static final PDFFileExtractor getInstance() {
-        return INSTANCE;
-    }
-
-    private PDFFileExtractor() {
-
-    }
 
     @Override
     public ExtractedData extract(File file) {
         try {
             PDDocument document = PDDocument.load(file);
             PDFTextStripper stripper = new PDFTextStripper();
-            return FileData.create(stripper.getText(document));
+            return FileData.create(stripper.getText(document), null, null, null);
         } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, 
-                    "I couldn''t read the file {0} because: {1}", 
-                    new Object[] {
-                        file.getName(), 
-                        ex.getCause().getMessage()
+            LOGGER.log(Level.SEVERE,
+                    "I couldn't read the file {0} because: {1}",
+                    new Object[]{
+                            file.getName(),
+                            ex.getCause().getMessage()
                     }
             );
         }
-        return FileData.create("");
+        return FileData.create("", null, null, null);
     }
-
 }

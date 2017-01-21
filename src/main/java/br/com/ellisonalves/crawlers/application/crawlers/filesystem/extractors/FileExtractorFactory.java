@@ -6,11 +6,11 @@ package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
  */
 public enum FileExtractorFactory {
 
-    TXT(".txt", TxtExtractor.getInstance()),
-    PDF(".pdf", PDFFileExtractor.getInstance()),
-    DOC(".doc", DocFileExtractor.getInstance()),
-    PPT(".ppt", PPTFileExtractor.getInstance()),
-    XLS(".xls", XLSFileExtractor.getInstance());
+    TXT(".txt", new TxtExtractor()),
+    PDF(".pdf", new PDFFileExtractor()),
+    DOC(".doc", new DocFileFileExtractor()),
+    PPT(".ppt", new PPTFileExtractor()),
+    XLS(".xls", new XLSFileExtractor());
 
     private final String fileExtension;
     private final FileExtractor instance;
@@ -28,7 +28,8 @@ public enum FileExtractorFactory {
                 }
             }
         }
-        throw new RuntimeException("Nenhuma instância para " + fileExtension + " não pode ser criada.");
+        throw new RuntimeException("Nenhuma instância para "
+                + fileExtension + " não pode ser criada.");
     }
 
 }

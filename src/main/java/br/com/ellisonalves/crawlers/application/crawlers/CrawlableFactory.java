@@ -5,6 +5,7 @@ import br.com.ellisonalves.crawlers.application.crawlers.gmail.GmailCrawler;
 import br.com.ellisonalves.crawlers.application.crawlers.rss.RssCrawler;
 import br.com.ellisonalves.crawlers.application.crawlers.twitter.TwitterCrawler;
 import br.com.ellisonalves.crawlers.application.crawlers.web.WebPageCrawler;
+import br.com.ellisonalves.crawlers.domain.repository.RepositoryFactory;
 
 /**
  * Instâncias dos tipos de crawlers disponiveis.
@@ -14,7 +15,7 @@ import br.com.ellisonalves.crawlers.application.crawlers.web.WebPageCrawler;
 public enum CrawlableFactory {
 
     WEB_PAGES("wp", new WebPageCrawler()),
-    FILE_SYSTEM("fs", new FileSystemCrawler()),
+    FILE_SYSTEM("fs", new FileSystemCrawler(RepositoryFactory.createDocumentRepository())),
     TWITTER("twt", new TwitterCrawler()),
     GMAIL("gmail", new GmailCrawler()),
     RSS("rss", new RssCrawler());
@@ -22,7 +23,7 @@ public enum CrawlableFactory {
     private final String abreviacao;
     private final Crawlable crawlable;
 
-    private CrawlableFactory(String abreviacao, Crawlable crawlable) {
+    CrawlableFactory(String abreviacao, Crawlable crawlable) {
         this.abreviacao = abreviacao;
         this.crawlable = crawlable;
     }

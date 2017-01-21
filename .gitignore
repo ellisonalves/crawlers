@@ -1,5 +1,5 @@
 target/
-data/
+text/
 logs/
 db/
 nbactions.xml
@@ -11,3 +11,11 @@ nb-configuration.xml
 build/
 gradlew*
 
+/nbproject/
+Removeria nbproject/
+Removeria src/main/java/br/com/ellisonalves/crawlers/application/crawlers/ConfigParameterNotFoundException.java
+Removeria src/main/java/br/com/ellisonalves/crawlers/domain/model/documento/Document.java
+Removeria src/main/java/br/com/ellisonalves/crawlers/domain/repository/
+/.nb-gradle/
+/out/
+/data/

@@ -27,7 +27,7 @@ public class WebPageCrawler implements Crawlable {
 
         CrawlConfig crawlerConfig = new CrawlConfig();
         crawlerConfig.setCrawlStorageFolder(crawlStorageFolder);
-        crawlerConfig.setMaxDepthOfCrawling(Integer.valueOf(config.get(Crawlable.PROFUNDIDADE_EXPLORACAO_PARAM).toString()));
+        crawlerConfig.setMaxDepthOfCrawling(Integer.valueOf(config.get(Crawlable.SEARCH_DEPTH_PARAM).toString()));
 
         try {
             PageFetcher pageFetcher = new PageFetcher(crawlerConfig);
