@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @param <T> type of the object to be inserted
  * @author ellison
  */
-public interface Insertable<T extends Serializable> {
+public interface Insertable<T extends Serializable> extends Repository {
 
     void insert(T object);
 

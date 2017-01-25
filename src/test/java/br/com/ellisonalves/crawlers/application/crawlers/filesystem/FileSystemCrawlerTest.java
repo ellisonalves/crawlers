@@ -1,6 +1,5 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem;
 
-import br.com.ellisonalves.crawlers.application.crawlers.ConfigParameterNotFoundException;
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
 import br.com.ellisonalves.crawlers.domain.repository.DocumentRepository;
 import org.junit.After;
@@ -29,20 +28,20 @@ public class FileSystemCrawlerTest {
         reset(documentRepository);
     }
 
-    @Test(expected = ConfigParameterNotFoundException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowAnExceptionWhenAllParametersAreMissing() {
         HashMap config = new HashMap();
         fileSystemCrawler.crawl(config);
     }
 
-    @Test(expected = ConfigParameterNotFoundException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowAnExceptionWhenInitialPathParameterIsMissing() throws Exception {
         HashMap<String, Object> config = new HashMap<>();
         config.put(Crawlable.SEARCH_DEPTH_PARAM, 2);
         fileSystemCrawler.crawl(config);
     }
 
-    @Test(expected = ConfigParameterNotFoundException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowAnExceptionWhenSearchDepthParameterIsMissing() throws Exception {
         HashMap<String, Object> config = new HashMap<>();
         config.put(Crawlable.INITIAL_PATH_PARAM, ".");
