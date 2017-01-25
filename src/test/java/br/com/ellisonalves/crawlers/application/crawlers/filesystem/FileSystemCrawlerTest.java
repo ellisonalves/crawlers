@@ -3,7 +3,7 @@ package br.com.ellisonalves.crawlers.application.crawlers.filesystem;
 import br.com.ellisonalves.crawlers.application.crawlers.ConfigParameterNotFoundException;
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
 import br.com.ellisonalves.crawlers.domain.repository.DocumentRepository;
-import org.apache.commons.lang.SystemUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -22,6 +22,11 @@ public class FileSystemCrawlerTest {
     public void setUp() throws Exception {
         documentRepository = mock(DocumentRepository.class);
         fileSystemCrawler = new FileSystemCrawler(documentRepository);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        reset(documentRepository);
     }
 
     @Test(expected = ConfigParameterNotFoundException.class)
@@ -47,13 +52,14 @@ public class FileSystemCrawlerTest {
     @Test
     public void shouldExploreTheFileSystem() throws Exception {
         HashMap<String, Object> config = new HashMap<>();
-
-        config.put(Crawlable.SEARCH_DEPTH_PARAM, 2);
-        config.put(Crawlable.INITIAL_PATH_PARAM, SystemUtils.USER_HOME + SystemUtils.FILE_SEPARATOR + "Documentos");
+        config.put(Crawlable.SEARCH_DEPTH_PARAM, 1);
+        config.put(Crawlable.INITIAL_PATH_PARAM, FileSystemCrawlerTest.class.getResource("/file_system_crawler_test_files").getFile());
 
         fileSystemCrawler.crawl(config);
 
-        verify(documentRepository, atLeast(1)).insert(Matchers.anyObject());
+        doNothing().when(documentRepository).insert(anyObject());
+
+        verify(documentRepository, times(5)).insert(Matchers.anyObject());
     }
 
 }

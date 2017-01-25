@@ -1,7 +1,6 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
 /**
- *
  * @author ellison
  */
 public enum FileExtractorFactory {
@@ -28,8 +27,7 @@ public enum FileExtractorFactory {
                 }
             }
         }
-        throw new RuntimeException("Nenhuma instância para "
-                + fileExtension + " não pode ser criada.");
+        throw new RuntimeException("Any instance of the extension " + fileExtension + " could be created.");
     }
 
 }

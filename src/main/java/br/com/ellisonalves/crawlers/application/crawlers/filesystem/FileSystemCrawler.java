@@ -4,8 +4,6 @@ import br.com.ellisonalves.crawlers.application.crawlers.ConfigParameterNotFound
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
 import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractor;
 import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractorFactory;
-import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
-import br.com.ellisonalves.crawlers.domain.model.documento.Document;
 import br.com.ellisonalves.crawlers.domain.repository.DocumentRepository;
 import org.apache.commons.lang.Validate;
 
@@ -46,16 +44,16 @@ public class FileSystemCrawler implements Crawlable {
     }
 
     private void explore(File file, int depth) {
-        if (depth != 0) {
+        if (depth != -1) {
             if (file.isDirectory()) {
                 File[] files = file.listFiles();
-                if (files != null) {
+                if (files != null)
                     for (File subFile : files) {
                         explore(subFile, depth - 1);
                     }
-                }
+            } else {
+                extract(file);
             }
-            extract(file);
         }
     }
 
@@ -66,7 +64,6 @@ public class FileSystemCrawler implements Crawlable {
 
             LOGGER.log(Level.INFO, "Opening the file: {0}", name);
             FileExtractor extractor = FileExtractorFactory.extractorOf(fileExtension);
-
             documentRepository.insert(extractor.extract(file));
         }
     }
