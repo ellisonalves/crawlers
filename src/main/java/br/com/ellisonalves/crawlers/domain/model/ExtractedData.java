@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Contract of the files that were its data extracted.
+ * Contract of the files that had its data extracted.
  *
  * @author ellison
  */
