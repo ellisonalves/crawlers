@@ -1,5 +1,7 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
+import br.com.ellisonalves.crawlers.application.crawlers.FileExtractor;
+
 /**
  * Place where it is possible to put the instances of each implemented file extractor.
  *

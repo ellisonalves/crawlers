@@ -1,6 +1,6 @@
-package br.com.ellisonalves.crawlers.domain.model.documento;
+package br.com.ellisonalves.crawlers.domain.model;
 
-import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
+import br.com.ellisonalves.crawlers.application.crawlers.ExtractedData;
 
 import java.io.Serializable;
 import java.util.Date;

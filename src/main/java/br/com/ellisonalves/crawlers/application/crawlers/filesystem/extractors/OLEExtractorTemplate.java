@@ -1,6 +1,8 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors;
 
-import br.com.ellisonalves.crawlers.domain.model.ExtractedData;
+import br.com.ellisonalves.crawlers.application.crawlers.ExtractedData;
+import br.com.ellisonalves.crawlers.application.crawlers.FileExtractor;
+import br.com.ellisonalves.crawlers.domain.valueobject.FileData;
 import org.apache.poi.POIOLE2TextExtractor;
 import org.apache.poi.hpsf.SummaryInformation;
 

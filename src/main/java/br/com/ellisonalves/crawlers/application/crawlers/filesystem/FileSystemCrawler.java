@@ -1,7 +1,7 @@
 package br.com.ellisonalves.crawlers.application.crawlers.filesystem;
 
 import br.com.ellisonalves.crawlers.application.crawlers.Crawlable;
-import br.com.ellisonalves.crawlers.application.crawlers.filesystem.extractors.FileExtractor;
+import br.com.ellisonalves.crawlers.application.crawlers.FileExtractor;
 import br.com.ellisonalves.crawlers.domain.repository.DocumentRepository;
 import org.apache.commons.lang.Validate;
 
@@ -75,8 +75,8 @@ public class FileSystemCrawler implements Crawlable {
         final String fileExtension = name.substring(name.lastIndexOf("."), name.length());
         if (!file.isDirectory() && fileExtractors.containsKey(fileExtension)) {
             LOGGER.log(Level.INFO, "Opening the file: {0}", name);
-            FileExtractor extractor = fileExtractors.get(fileExtension);
-            documentRepository.insert(extractor.extract(file));
+            FileExtractor fileExtractor = fileExtractors.get(fileExtension);
+            documentRepository.insert(fileExtractor.extract(file));
         }
     }
 
